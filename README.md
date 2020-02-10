@@ -1,3 +1,6 @@
+[![Snap Status](https://build.snapcraft.io/badge/kz6fittycent/fontpreview.svg)](https://build.snapcraft.io/user/kz6fittycent/fontpreview)
+
+
 <p align="center"><img src="extra/logo.png"><br><sub>✨ Very customizable and minimal font previewer written in bash ✨</sub></p>
 
 `fontpreview` is a commandline tool that lets you **quickly search** for fonts
