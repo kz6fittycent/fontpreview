@@ -25,7 +25,7 @@ parts:
       - imagemagick
       - sxiv
     
-    stage:
+    stage-packages:
       - xdotool
       - imagemagick
       - sxiv   
