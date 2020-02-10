@@ -47,6 +47,14 @@ Maintained by **[@elsorino](https://github.com/elsorino)**
 ```bash
 yay -Sy fontpreview 
 ```
+
+### Snap
+Maintained by **[@kz6fittycent](https://github.com/kz6fittycent/fontpreview)**
+
+```
+sudo snap install fontpreview --devmode
+```
+
 ## Usage
 ```
 $ fontpreview --help
