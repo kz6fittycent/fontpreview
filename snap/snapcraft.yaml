@@ -1,6 +1,6 @@
 name: fontpreview
 version: git
-summary: fontpreview is a commandline tool that lets you quickly search for fonts and preview them
+summary: fontpreview lets you quickly search for fonts and preview them
 description: |
   fontpreview is a commandline tool that lets you quickly search for fonts that are installed on your machine and preview them.
 grade: stable
