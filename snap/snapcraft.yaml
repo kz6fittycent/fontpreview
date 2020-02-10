@@ -11,13 +11,13 @@ apps:
     command: fontpreview
     plugs:
       - home
-      - system-files
+#      - system-files
       - x11
       - wayland
       - unity7
       - desktop-legacy
       - desktop
-      - unity8
+#      - unity8
    
 parts:
   fontpreview:
