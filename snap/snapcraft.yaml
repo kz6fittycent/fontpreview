@@ -1,1 +1,36 @@
-name:
+name: fontpreview
+version: 'git'
+summary: fontpreview is a commandline tool that lets you quickly search for fonts that are installed on your machine and preview them. 
+description: |
+fontpreview is a commandline tool that lets you quickly search for fonts that are installed on your machine and preview them. The fuzzy search feature is provided by fzf and the preview is generated with imagemagick and then displayed using sxiv. This tool is highly customizable, almost all of the variables in this tool can be changed using the commandline flags or you can configure them using environment variables.
+
+grade: devel
+confinement: devmode
+
+apps: 
+  fontpreview:
+    aliases:
+      - fontpreview
+    commmand: fontpreview
+    plugs:
+      - home
+      - system-files
+   
+parts:
+  fontpreview:
+    source: https://github.com/sdushantha/fontpreview
+    source-type: git
+    plugin: auto-tools
+    
+    build-packages:
+      - make
+      - xdotool
+      - imagemagick
+      - sxiv
+    
+    stage:
+      - xdotool
+      - imagemagick
+      - sxiv   
+  
+      
