@@ -8,7 +8,7 @@ confinement: strict
 
 apps: 
   fontpreview:
-    command: fontpreview
+    command: $SNAP/fontpreview
     plugs:
       - home
 #      - system-files
