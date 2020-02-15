@@ -13,7 +13,6 @@ apps:
       - home
 #      - system-files
       - x11
-      - wayland
       - unity7
       - desktop-legacy
       - desktop
@@ -23,7 +22,7 @@ parts:
   fontpreview:
     source: https://github.com/sdushantha/fontpreview
     source-type: git
-    plugin: make
+    plugin: autotools
     
     build-packages:
       - make
