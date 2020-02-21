@@ -6,6 +6,12 @@ description: |
 grade: devel
 confinement: devmode
 
+base: core19
+
+layout:
+  /usr/bin/fontpreview:
+    bind: $SNAP/usr/bin/fontpreview
+
 apps: 
   fontpreview:
     command: $SNAP/usr/bin/fontpreview
