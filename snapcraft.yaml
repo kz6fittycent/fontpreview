@@ -6,7 +6,7 @@ description: |
 grade: devel
 confinement: devmode
 
-base: core19
+base: core18
 
 layout:
   /usr/bin/fontpreview:
