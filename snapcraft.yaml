@@ -33,7 +33,7 @@ parts:
   fontpreview:
     source: https://github.com/sdushantha/fontpreview
     source-type: git
-    plugin: autotools
+    plugin: make
     
     build-packages:
       - make
