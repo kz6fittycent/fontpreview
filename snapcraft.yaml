@@ -48,13 +48,11 @@ parts:
       - xdotool
       - imagemagick
       - sxiv
-      - fzf
     
     stage-packages:
       - xdotool
       - imagemagick
       - sxiv   
-      - fzf
       
   cleanup:
     after:  # Make this part run last; list all your other parts here
