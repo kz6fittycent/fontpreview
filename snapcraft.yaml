@@ -1,13 +1,18 @@
 name: fontpreview
-version: git
+adopt-info: fontpreview
 summary: fontpreview lets you quickly search for fonts and preview them
 description: |
   fontpreview is a commandline tool that lets you quickly search for fonts that are installed on your machine and preview them.
-grade: devel
-confinement: devmode
 
-base: core20
+grade: stable
+confinement: strict
+base: core18
 
+license: MIT
+
+architectures:
+  - build-on: amd64
+  
 layout:
   /usr/bin/fontpreview:
     bind: $SNAP/usr/bin/fontpreview
@@ -19,19 +24,25 @@ apps:
     command: $SNAP/usr/bin/fontpreview
     plugs:
       - home
-#      - system-files
       - x11
       - unity7
       - desktop-legacy
       - desktop
-#      - unity8
    
 parts:
   fontpreview:
     source: https://github.com/sdushantha/fontpreview
     source-type: git
     plugin: autotools
-    
+
+    override-pull: |
+      snapcraftctl pull
+      snapcraftctl set-version "$(git describe --tags | sed 's/^v//' | cut -d "-" -f1)"
+  
+  fzf:
+    source: https://github.com/junegunn/fzf/releases/download/0.24.0/fzf-0.24.0-linux_amd64.tar.gz
+    plugin: dump
+  
     build-packages:
       - make
       - xdotool
@@ -44,3 +55,17 @@ parts:
       - imagemagick
       - sxiv   
       - fzf
+      
+  cleanup:
+    after:  # Make this part run last; list all your other parts here
+      - fzf
+      - fontpreview
+    plugin: nil
+    build-snaps:  # List all content-snaps and base snaps you're using here
+      - core18
+      - gnome-3-28-1804
+    override-prime: |
+      set -eux
+      for snap in "core18" "gnome-3-28-1804"; do  # List all content-snaps and base snaps you're using here
+        cd "/snap/$snap/current" && find . -type f,l -exec rm -f "$SNAPCRAFT_PRIME/{}" \;
+      done      
