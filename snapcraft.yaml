@@ -34,15 +34,7 @@ parts:
     source: https://github.com/sdushantha/fontpreview
     source-type: git
     plugin: autotools
-
-    override-pull: |
-      snapcraftctl pull
-      snapcraftctl set-version "$(git describe --tags | sed 's/^v//' | cut -d "-" -f1)"
-  
-  fzf:
-    source: https://github.com/junegunn/fzf/releases/download/0.24.0/fzf-0.24.0-linux_amd64.tar.gz
-    plugin: dump
-  
+    
     build-packages:
       - make
       - xdotool
@@ -52,8 +44,17 @@ parts:
     stage-packages:
       - xdotool
       - imagemagick
-      - sxiv   
-      
+      - sxiv  
+
+    override-pull: |
+      snapcraftctl pull
+      snapcraftctl set-version "$(git describe --tags | sed 's/^v//' | cut -d "-" -f1)"
+  
+  fzf:
+    source: https://github.com/junegunn/fzf
+    source-type: git
+    plugin: make
+  
   cleanup:
     after:  # Make this part run last; list all your other parts here
       - fzf
