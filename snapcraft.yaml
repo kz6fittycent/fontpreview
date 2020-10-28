@@ -56,7 +56,7 @@ parts:
     override-build: |
       wget -O fzf.tar.gz https://github.com/junegunn/fzf/releases/download/0.24.1/fzf-0.24.1-linux_amd64.tar.gz
       mkdir -p $SNAPCRAFT_PART_INSTALL/usr/bin/
-      tar xzf -C $SNAPCRAFT_PART_INSTALL/usr/bin/ fzf.tar.gz
+      tar xzvf fzf.tar.gz --directory $SNAPCRAFT_PART_INSTALL/usr/bin/
       chmod a+x $SNAPCRAFT_PART_INSTALL/usr/bin/fzf
 
   imagemagick:
