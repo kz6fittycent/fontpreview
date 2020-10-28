@@ -21,7 +21,7 @@ apps:
   fontpreview:
     extensions: 
       - gnome-3-34
-    command: $SNAP/usr/bin/fontpreview
+    command: fontpreview
     plugs:
       - home
       - x11
