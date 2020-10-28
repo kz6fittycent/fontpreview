@@ -55,7 +55,6 @@ parts:
     source-type: git
     plugin: nil
     build-packages:
-      - go
       - curl
       - wget
       
