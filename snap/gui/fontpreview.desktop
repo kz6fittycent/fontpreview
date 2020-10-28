@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=fontpreview
+GenericName=fontpreview
+Comment=fontpreview lets you quickly search for fonts and preview them
+Exec=fontpreview
+Icon=${SNAP}/meta/gui/fontpreview.png
+Terminal=false
+Type=Application
+StartupNotify=false
+Categories=Application;
+Keywords=fontpreview;

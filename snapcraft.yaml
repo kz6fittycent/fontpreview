@@ -3,15 +3,11 @@ adopt-info: fontpreview
 summary: fontpreview lets you quickly search for fonts and preview them
 description: |
   fontpreview is a commandline tool that lets you quickly search for fonts that are installed on your machine and preview them.
-
 grade: stable
 confinement: strict
 base: core18
 
 license: MIT
-
-architectures:
-  - build-on: amd64
 
 apps: 
   fontpreview:
@@ -47,9 +43,18 @@ parts:
       snapcraftctl set-version "$(git describe --tags | sed 's/^v//' | cut -d "-" -f1)"
   
   fzf:
-    source: https://github.com/junegunn/fzf/releases/download/0.24.0/fzf-0.24.0-linux_amd64.tar.gz
-    source-type: tar
-    plugin: dump
+    source: https://github.com/junegunn/fzf
+    source-type: git
+    plugin: nil
+    
+    build-packages:
+      - curl
+      - wget
+      
+    override-build: |
+      mkdir -p /.fzf
+      git clone --depth 1 https://github.com/junegunn/fzf.git /.fzf
+      /.fzf/install
  
   imagemagick:
     source: https://github.com/ImageMagick/ImageMagick
@@ -62,11 +67,13 @@ parts:
       - fontpreview
       - imagemagick
     plugin: nil
+    
     build-snaps:  # List all content-snaps and base snaps you're using here
       - core18
       - gnome-3-28-1804
+      
     override-prime: |
       set -eux
       for snap in "core18" "gnome-3-28-1804"; do  # List all content-snaps and base snaps you're using here
         cd "/snap/$snap/current" && find . -type f,l -exec rm -f "$SNAPCRAFT_PRIME/{}" \;
-      done      
+      done  
