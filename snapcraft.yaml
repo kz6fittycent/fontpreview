@@ -23,8 +23,7 @@ apps:
       - unity7
       - desktop-legacy
       - desktop
-      - mount-observe
-   
+
 parts:
   fontpreview:
     source: https://github.com/sdushantha/fontpreview
@@ -63,7 +62,11 @@ parts:
     source: https://github.com/ImageMagick/ImageMagick
     source-type: git
     plugin: autotools
-  
+    
+    build-packages:
+      - pkg-config
+      - gcc    
+ 
   cleanup:
     after:  # list all your other parts here
       - fzf
