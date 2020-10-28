@@ -40,6 +40,7 @@ parts:
     stage-packages:
       - xdotool
       - imagemagick
+      - imagemagick-6-common
       - sxiv  
 
     override-pull: |
