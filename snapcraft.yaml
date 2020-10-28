@@ -39,8 +39,6 @@ parts:
     
     stage-packages:
       - xdotool
-      - imagemagick
-      - imagemagick-6-common
       - sxiv  
 
     override-pull: |
@@ -58,11 +56,18 @@ parts:
     override-build: |
       git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
       ~/.fzf/install
+  imagemagick:
+    source: https://github.com/ImageMagick/ImageMagick
+    source-type: git
+    plugin: autotools
+    environment: 
+      LD_LIBRARY_PATH: $SNAP_USER_COMMON/ImageMagick-7.0.9/lib
   
   cleanup:
     after:  # Make this part run last; list all your other parts here
       - fzf
       - fontpreview
+      - imagemagick
     plugin: nil
     build-snaps:  # List all content-snaps and base snaps you're using here
       - core18
