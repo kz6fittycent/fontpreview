@@ -39,6 +39,13 @@ parts:
     stage-packages:
       - xdotool
       - sxiv  
+      - libimlib2
+      - libxft2
+      - libfreetype6
+      - fontconfig
+      - giflib-tools
+      - libexif12
+      - x11-xserver-utils
 
     override-pull: |
       snapcraftctl pull
