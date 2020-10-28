@@ -60,8 +60,6 @@ parts:
     source: https://github.com/ImageMagick/ImageMagick
     source-type: git
     plugin: autotools
-    environment: 
-      LD_LIBRARY_PATH: $SNAP_USER_COMMON/ImageMagick-7.0.9/lib
   
   cleanup:
     after:  # Make this part run last; list all your other parts here
