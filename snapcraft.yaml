@@ -12,7 +12,7 @@ license: MIT
 
 architectures:
   - build-on: amd64
-  
+
 apps: 
   fontpreview:
     extensions: 
@@ -24,6 +24,7 @@ apps:
       - unity7
       - desktop-legacy
       - desktop
+      - mount-observe
    
 parts:
   fontpreview:
@@ -46,16 +47,10 @@ parts:
       snapcraftctl set-version "$(git describe --tags | sed 's/^v//' | cut -d "-" -f1)"
   
   fzf:
-    source: https://github.com/junegunn/fzf
-    source-type: git
-    plugin: nil
-    build-packages:
-      - curl
-      - wget
-      
-    override-build: |
-      git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-      ~/.fzf/install
+    source: https://github.com/junegunn/fzf/releases/download/0.24.0/fzf-0.24.0-linux_amd64.tar.gz
+    source-type: tar
+    plugin: dump
+ 
   imagemagick:
     source: https://github.com/ImageMagick/ImageMagick
     source-type: git
