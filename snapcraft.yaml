@@ -13,10 +13,6 @@ license: MIT
 architectures:
   - build-on: amd64
   
-layout:
-  /usr/bin/fontpreview:
-    bind: $SNAP/usr/bin/fontpreview
-
 apps: 
   fontpreview:
     extensions: 
