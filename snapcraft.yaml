@@ -52,11 +52,11 @@ parts:
       - wget
       
     override-build: |
-      mkdir -p $SNAPCRAFT_PART_INSTALL/.fzf
-      git clone --depth 1 https://github.com/junegunn/fzf.git 
-      mkdir -p $SNAPCRAFT_PART_INSTALL/.fzf
-      chmod a+x $SNAPCRAFT_PART_INSTALL/.fzf/install
-      bash $SNAPCRAFT_PART_INSTALL/.fzf/install
+      mkdir -p $SNAPCRAFT_PART_INSTALL/fzf
+      git clone --depth 1 https://github.com/junegunn/fzf.git $SNAPCRAFT_PART_INSTALL/fzf
+      chmod a+x $SNAPCRAFT_PART_INSTALL/fzf/install
+      cd $SNAPCRAFT_PART_INSTALL/fzf/
+      ./install
  
   imagemagick:
     source: https://github.com/ImageMagick/ImageMagick
