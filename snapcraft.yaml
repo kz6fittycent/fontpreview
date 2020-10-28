@@ -9,6 +9,9 @@ base: core18
 
 license: MIT
 
+architectures:
+  - build-on: amd64
+
 apps: 
   fontpreview:
     extensions: 
@@ -43,28 +46,26 @@ parts:
       snapcraftctl set-version "$(git describe --tags | sed 's/^v//' | cut -d "-" -f1)"
   
   fzf:
-    source: https://github.com/junegunn/fzf
-    source-type: git
+    source: https://github.com/junegunn/fzf/releases/download/0.24.1/fzf-0.24.1-linux_amd64.tar.gz
+    source-type: tar
     plugin: nil
     
     build-packages:
-      - curl
       - wget
       
     override-build: |
-      mkdir -p $SNAPCRAFT_PART_INSTALL/fzf
-      git clone --depth 1 https://github.com/junegunn/fzf.git $SNAPCRAFT_PART_INSTALL/fzf
-      chmod a+x $SNAPCRAFT_PART_INSTALL/fzf/install
-      cd $SNAPCRAFT_PART_INSTALL/fzf/
-      ./install
- 
+      wget -O fzf.tar.gz https://github.com/junegunn/fzf/releases/download/0.24.1/fzf-0.24.1-linux_amd64.tar.gz
+      mkdir -p $SNAPCRAFT_PART_INSTALL/usr/bin/
+      tar xzf fzf.tar.gz $SNAPCRAFT_PART_INSTALL/usr/bin/
+      chmod a+x $SNAPCRAFT_PART_INSTALL/usr/bin/fzf
+
   imagemagick:
     source: https://github.com/ImageMagick/ImageMagick
     source-type: git
     plugin: autotools
   
   cleanup:
-    after:  # Make this part run last; list all your other parts here
+    after:  # list all your other parts here
       - fzf
       - fontpreview
       - imagemagick
