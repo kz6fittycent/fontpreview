@@ -29,7 +29,7 @@ parts:
     build-packages:
       - make
       - xdotool
-      - imagemagick
+      - php-imagick
       - sxiv
       - fzf
     
@@ -43,7 +43,7 @@ parts:
       - giflib-tools
       - libexif12
       - x11-xserver-utils
-      - imagick
+      - php-imagick
       - fzf
 
     override-pull: |
