@@ -5,7 +5,7 @@ description: |
   fontpreview is a commandline tool that lets you quickly search for fonts that are installed on your machine and preview them.
 grade: stable
 confinement: strict
-base: core18
+base: core22
 
 license: MIT
 
@@ -15,14 +15,10 @@ architectures:
 apps: 
   fontpreview:
     extensions: 
-      - gnome-3-34
+      - gnome
     command: fontpreview
     plugs:
       - home
-      - x11
-      - unity7
-      - desktop-legacy
-      - desktop
 
 parts:
   fontpreview:
@@ -35,6 +31,7 @@ parts:
       - xdotool
       - imagemagick
       - sxiv
+      - fzf
     
     stage-packages:
       - xdotool
@@ -46,47 +43,11 @@ parts:
       - giflib-tools
       - libexif12
       - x11-xserver-utils
+      - imagick
+      - fzf
 
     override-pull: |
       snapcraftctl pull
       snapcraftctl set-version "$(git describe --tags | sed 's/^v//' | cut -d "-" -f1)"
-  
-  fzf:
-    source: https://github.com/junegunn/fzf/releases/download/0.24.1/fzf-0.24.1-linux_amd64.tar.gz
-    source-type: tar
-    plugin: nil
-    
-    build-packages:
-      - wget
-      
-    override-build: |
-      wget -O fzf.tar.gz https://github.com/junegunn/fzf/releases/download/0.24.1/fzf-0.24.1-linux_amd64.tar.gz
-      mkdir -p $SNAPCRAFT_PART_INSTALL/usr/bin/
-      tar xzvf fzf.tar.gz --directory $SNAPCRAFT_PART_INSTALL/usr/bin/
-      chmod a+x $SNAPCRAFT_PART_INSTALL/usr/bin/fzf
 
-  imagemagick:
-    source: https://github.com/ImageMagick/ImageMagick
-    source-type: git
-    plugin: autotools
-    
-    build-packages:
-      - pkg-config
-      - gcc    
- 
-  cleanup:
-    after:  # list all your other parts here
-      - fzf
-      - fontpreview
-      - imagemagick
-    plugin: nil
-    
-    build-snaps:  # List all content-snaps and base snaps you're using here
-      - core18
-      - gnome-3-28-1804
-      
-    override-prime: |
-      set -eux
-      for snap in "core18" "gnome-3-28-1804"; do  # List all content-snaps and base snaps you're using here
-        cd "/snap/$snap/current" && find . -type f,l -exec rm -f "$SNAPCRAFT_PRIME/{}" \;
-      done  
+
