@@ -16,7 +16,7 @@ apps:
   fontpreview:
     extensions: 
       - gnome
-    command: fontpreview
+    command: bin/fontpreview
     plugs:
       - home
 
@@ -49,5 +49,3 @@ parts:
     override-pull: |
       snapcraftctl pull
       snapcraftctl set-version "$(git describe --tags | sed 's/^v//' | cut -d "-" -f1)"
-
-
